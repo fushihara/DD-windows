@@ -147,7 +147,7 @@ namespace DD {
                 MessageBox.Show("書き出すファイルの指定がありません");
                 return;
             }
-            if (new FileInfo(savePath).Exists) {
+            if ( ((Control.ModifierKeys & Keys.Shift) != Keys.Shift) && new FileInfo(savePath).Exists) {
                 DialogResult dr = MessageBox.Show("書き出すファイルが存在します。上書きしてよろしいですか？\r\n[" + savePath + "]", "ファイル存在エラー", MessageBoxButtons.OKCancel, MessageBoxIcon.Error, MessageBoxDefaultButton.Button2);
                 if (dr == DialogResult.Cancel) {
                     return;

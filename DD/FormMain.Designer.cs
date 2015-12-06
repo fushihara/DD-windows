@@ -150,7 +150,7 @@
             this.ButtonStart.Name = "ButtonStart";
             this.ButtonStart.Size = new System.Drawing.Size(737, 23);
             this.ButtonStart.TabIndex = 15;
-            this.ButtonStart.Text = "スタート";
+            this.ButtonStart.Text = "スタート(Shift押下で上書き確認スキップ)";
             this.ButtonStart.UseVisualStyleBackColor = true;
             this.ButtonStart.Click += new System.EventHandler(this.ButtonStart_Click);
             // 
