@@ -33,6 +33,9 @@
             this.TextBoxToFilePath = new System.Windows.Forms.TextBox();
             this.ButtonCopyPath = new System.Windows.Forms.Button();
             this.ButtonStart = new System.Windows.Forms.Button();
+            this.RadioButtonTrimTypeC = new System.Windows.Forms.RadioButton();
+            this.ByteInputControl_C2 = new DD.ByteInputControl();
+            this.ByteInputControl_C1 = new DD.ByteInputControl();
             this.ByteInputControl_B2 = new DD.ByteInputControl();
             this.ByteInputControl_B1 = new DD.ByteInputControl();
             this.ByteInputControl_A2 = new DD.ByteInputControl();
@@ -55,7 +58,7 @@
             // RadioButtonTrimTypeB
             // 
             this.RadioButtonTrimTypeB.AutoSize = true;
-            this.RadioButtonTrimTypeB.Location = new System.Drawing.Point(12, 44);
+            this.RadioButtonTrimTypeB.Location = new System.Drawing.Point(12, 69);
             this.RadioButtonTrimTypeB.Name = "RadioButtonTrimTypeB";
             this.RadioButtonTrimTypeB.Size = new System.Drawing.Size(741, 16);
             this.RadioButtonTrimTypeB.TabIndex = 1;
@@ -68,7 +71,7 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.panel1.Location = new System.Drawing.Point(12, 70);
+            this.panel1.Location = new System.Drawing.Point(12, 92);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(737, 1);
             this.panel1.TabIndex = 8;
@@ -78,14 +81,14 @@
             this.TextBoxStatus.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.TextBoxStatus.Font = new System.Drawing.Font("ＭＳ ゴシック", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.TextBoxStatus.Location = new System.Drawing.Point(12, 77);
+            this.TextBoxStatus.Location = new System.Drawing.Point(12, 99);
             this.TextBoxStatus.Multiline = true;
             this.TextBoxStatus.Name = "TextBoxStatus";
             this.TextBoxStatus.ReadOnly = true;
-            this.TextBoxStatus.Size = new System.Drawing.Size(741, 46);
+            this.TextBoxStatus.Size = new System.Drawing.Size(741, 56);
             this.TextBoxStatus.TabIndex = 9;
-            this.TextBoxStatus.Text = "1234567890(10GB1000MB1000KB1000B) ←ファイルサイズ\r\n1234567890(10GB1000MB1000KB1000B) ←ファ" +
-    "イルサイズ\r\n1234567890(10GB1000MB1000KB1000B) ←ファイルサイズ";
+            this.TextBoxStatus.Text = "説明\r\n1234567890(10GB1000MB1000KB1000B) ←ファイルサイズ\r\n1234567890(10GB1000MB1000KB1000B)" +
+    " ←ファイルサイズ\r\n1234567890(10GB1000MB1000KB1000B) ←ファイルサイズ";
             // 
             // TextBoxFromFilePath
             // 
@@ -93,7 +96,7 @@
             this.TextBoxFromFilePath.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.TextBoxFromFilePath.Font = new System.Drawing.Font("ＭＳ ゴシック", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.TextBoxFromFilePath.Location = new System.Drawing.Point(12, 133);
+            this.TextBoxFromFilePath.Location = new System.Drawing.Point(12, 160);
             this.TextBoxFromFilePath.Name = "TextBoxFromFilePath";
             this.TextBoxFromFilePath.Size = new System.Drawing.Size(679, 19);
             this.TextBoxFromFilePath.TabIndex = 10;
@@ -101,7 +104,7 @@
             // ButtonOpenFileDialogFrom
             // 
             this.ButtonOpenFileDialogFrom.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.ButtonOpenFileDialogFrom.Location = new System.Drawing.Point(697, 129);
+            this.ButtonOpenFileDialogFrom.Location = new System.Drawing.Point(697, 156);
             this.ButtonOpenFileDialogFrom.Name = "ButtonOpenFileDialogFrom";
             this.ButtonOpenFileDialogFrom.Size = new System.Drawing.Size(52, 23);
             this.ButtonOpenFileDialogFrom.TabIndex = 11;
@@ -112,7 +115,7 @@
             // ButtonOpenFileDialogTo
             // 
             this.ButtonOpenFileDialogTo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.ButtonOpenFileDialogTo.Location = new System.Drawing.Point(697, 172);
+            this.ButtonOpenFileDialogTo.Location = new System.Drawing.Point(697, 199);
             this.ButtonOpenFileDialogTo.Name = "ButtonOpenFileDialogTo";
             this.ButtonOpenFileDialogTo.Size = new System.Drawing.Size(52, 23);
             this.ButtonOpenFileDialogTo.TabIndex = 13;
@@ -126,7 +129,7 @@
             this.TextBoxToFilePath.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.TextBoxToFilePath.Font = new System.Drawing.Font("ＭＳ ゴシック", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.TextBoxToFilePath.Location = new System.Drawing.Point(12, 176);
+            this.TextBoxToFilePath.Location = new System.Drawing.Point(12, 203);
             this.TextBoxToFilePath.MinimumSize = new System.Drawing.Size(679, 19);
             this.TextBoxToFilePath.Name = "TextBoxToFilePath";
             this.TextBoxToFilePath.Size = new System.Drawing.Size(679, 19);
@@ -134,7 +137,7 @@
             // 
             // ButtonCopyPath
             // 
-            this.ButtonCopyPath.Location = new System.Drawing.Point(302, 152);
+            this.ButtonCopyPath.Location = new System.Drawing.Point(302, 179);
             this.ButtonCopyPath.Name = "ButtonCopyPath";
             this.ButtonCopyPath.Size = new System.Drawing.Size(104, 23);
             this.ButtonCopyPath.TabIndex = 14;
@@ -146,7 +149,7 @@
             // 
             this.ButtonStart.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.ButtonStart.Location = new System.Drawing.Point(12, 201);
+            this.ButtonStart.Location = new System.Drawing.Point(12, 228);
             this.ButtonStart.Name = "ButtonStart";
             this.ButtonStart.Size = new System.Drawing.Size(737, 23);
             this.ButtonStart.TabIndex = 15;
@@ -154,16 +157,43 @@
             this.ButtonStart.UseVisualStyleBackColor = true;
             this.ButtonStart.Click += new System.EventHandler(this.ButtonStart_Click);
             // 
+            // RadioButtonTrimTypeC
+            // 
+            this.RadioButtonTrimTypeC.AutoSize = true;
+            this.RadioButtonTrimTypeC.Location = new System.Drawing.Point(12, 41);
+            this.RadioButtonTrimTypeC.Name = "RadioButtonTrimTypeC";
+            this.RadioButtonTrimTypeC.Size = new System.Drawing.Size(703, 16);
+            this.RadioButtonTrimTypeC.TabIndex = 16;
+            this.RadioButtonTrimTypeC.TabStop = true;
+            this.RadioButtonTrimTypeC.Text = "頭の　　　　　　 　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　から　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　まで切り" +
+    "出し";
+            this.RadioButtonTrimTypeC.UseVisualStyleBackColor = true;
+            this.RadioButtonTrimTypeC.CheckedChanged += new System.EventHandler(this.RadioButtonTrimTypeC_CheckedChanged);
+            // 
+            // ByteInputControl_C2
+            // 
+            this.ByteInputControl_C2.Location = new System.Drawing.Point(367, 37);
+            this.ByteInputControl_C2.Name = "ByteInputControl_C2";
+            this.ByteInputControl_C2.Size = new System.Drawing.Size(283, 24);
+            this.ByteInputControl_C2.TabIndex = 18;
+            // 
+            // ByteInputControl_C1
+            // 
+            this.ByteInputControl_C1.Location = new System.Drawing.Point(59, 36);
+            this.ByteInputControl_C1.Name = "ByteInputControl_C1";
+            this.ByteInputControl_C1.Size = new System.Drawing.Size(283, 24);
+            this.ByteInputControl_C1.TabIndex = 17;
+            // 
             // ByteInputControl_B2
             // 
-            this.ByteInputControl_B2.Location = new System.Drawing.Point(453, 40);
+            this.ByteInputControl_B2.Location = new System.Drawing.Point(453, 65);
             this.ByteInputControl_B2.Name = "ByteInputControl_B2";
             this.ByteInputControl_B2.Size = new System.Drawing.Size(283, 24);
             this.ByteInputControl_B2.TabIndex = 7;
             // 
             // ByteInputControl_B1
             // 
-            this.ByteInputControl_B1.Location = new System.Drawing.Point(59, 39);
+            this.ByteInputControl_B1.Location = new System.Drawing.Point(59, 64);
             this.ByteInputControl_B1.Name = "ByteInputControl_B1";
             this.ByteInputControl_B1.Size = new System.Drawing.Size(283, 24);
             this.ByteInputControl_B1.TabIndex = 6;
@@ -186,7 +216,10 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(755, 224);
+            this.ClientSize = new System.Drawing.Size(755, 256);
+            this.Controls.Add(this.ByteInputControl_C2);
+            this.Controls.Add(this.ByteInputControl_C1);
+            this.Controls.Add(this.RadioButtonTrimTypeC);
             this.Controls.Add(this.ButtonStart);
             this.Controls.Add(this.ButtonCopyPath);
             this.Controls.Add(this.ButtonOpenFileDialogTo);
@@ -202,8 +235,8 @@
             this.Controls.Add(this.RadioButtonTrimTypeB);
             this.Controls.Add(this.RadioButtonTrimTypeA);
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(9999, 251);
-            this.MinimumSize = new System.Drawing.Size(761, 251);
+            this.MaximumSize = new System.Drawing.Size(9999, 283);
+            this.MinimumSize = new System.Drawing.Size(761, 283);
             this.Name = "FormMain";
             this.Text = "DD";
             this.Load += new System.EventHandler(this.FormMain_Load);
@@ -228,6 +261,8 @@
         private System.Windows.Forms.TextBox TextBoxToFilePath;
         private System.Windows.Forms.Button ButtonCopyPath;
         private System.Windows.Forms.Button ButtonStart;
-
+        private ByteInputControl ByteInputControl_C2;
+        private ByteInputControl ByteInputControl_C1;
+        private System.Windows.Forms.RadioButton RadioButtonTrimTypeC;
     }
 }

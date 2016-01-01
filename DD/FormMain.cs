@@ -25,11 +25,15 @@ namespace DD {
             ByteInputControl_A2.setBase(ByteBase);
             ByteInputControl_B1.setBase(ByteBase);
             ByteInputControl_B2.setBase(ByteBase);
+            ByteInputControl_C1.setBase(ByteBase);
+            ByteInputControl_C2.setBase(ByteBase);
 
             ByteInputControl_A1.ValueChanged += (a, b) => { UpdateStatus(); };
             ByteInputControl_A2.ValueChanged += (a, b) => { UpdateStatus(); };
             ByteInputControl_B1.ValueChanged += (a, b) => { UpdateStatus(); };
             ByteInputControl_B2.ValueChanged += (a, b) => { UpdateStatus(); };
+            ByteInputControl_C1.ValueChanged += (a, b) => { UpdateStatus(); };
+            ByteInputControl_C2.ValueChanged += (a, b) => { UpdateStatus(); };
             UpdateStatus();
             TextBoxFromFilePath.DragEnter += (a, b) => { b.Effect = b.Data.GetDataPresent(DataFormats.FileDrop) ? DragDropEffects.Copy : DragDropEffects.None; };
             TextBoxToFilePath.DragEnter += (a, b) => { b.Effect = b.Data.GetDataPresent(DataFormats.FileDrop) ? DragDropEffects.Copy : DragDropEffects.None; };
@@ -51,6 +55,8 @@ namespace DD {
             ByteInputControl_A2.SetEnable(true);
             ByteInputControl_B1.SetEnable(false);
             ByteInputControl_B2.SetEnable(false);
+            ByteInputControl_C1.SetEnable(false);
+            ByteInputControl_C2.SetEnable(false);
             UpdateStatus();
         }
 
@@ -59,6 +65,17 @@ namespace DD {
             ByteInputControl_A2.SetEnable(false);
             ByteInputControl_B1.SetEnable(true);
             ByteInputControl_B2.SetEnable(true);
+            ByteInputControl_C1.SetEnable(false);
+            ByteInputControl_C2.SetEnable(false);
+            UpdateStatus();
+        }
+        private void RadioButtonTrimTypeC_CheckedChanged(object sender, EventArgs e) {
+            ByteInputControl_A1.SetEnable(false);
+            ByteInputControl_A2.SetEnable(false);
+            ByteInputControl_B1.SetEnable(false);
+            ByteInputControl_B2.SetEnable(false);
+            ByteInputControl_C1.SetEnable(true);
+            ByteInputControl_C2.SetEnable(true);
             UpdateStatus();
         }
         public static void setByteInformation(StringBuilder sb, long rawbyte, String tail) {
@@ -76,9 +93,7 @@ namespace DD {
             if (RadioButtonTrimTypeA.Checked) {
                 long head = ByteInputControl_A1.getByte();
                 long tail = ByteInputControl_A2.getByte();
-                setByteInformation(sb, BaseFileSize, "←読み込みファイルサイズ\r\n");
-                setByteInformation(sb, head, "←頭\r\n");
-                setByteInformation(sb, tail, "←尻");
+                sb.AppendLine("左からファイルサイズ-右の間を切り出します。頭の1バイトとケツの1バイトをカットする");
                 if (BaseFileSize != -1) {
                     do {
                         if (BaseFileSize < head + tail) {
@@ -89,12 +104,10 @@ namespace DD {
                         byteLength = BaseFileSize - head - tail;
                     } while (false);
                 }
-            } else {
+            } else if (RadioButtonTrimTypeB.Checked) {
                 long head = ByteInputControl_B1.getByte();
                 long size = ByteInputControl_B2.getByte();
-                setByteInformation(sb, BaseFileSize, "←ファイルサイズ\r\n");
-                setByteInformation(sb, head, "←頭\r\n");
-                setByteInformation(sb, size, "←ファイルサイズ");
+                sb.AppendLine("左から左＋右の間を切り出します。1バイト目から100バイト分(101バイト目まで)切り出す");
                 if (BaseFileSize != -1) {
                     do {
                         if (BaseFileSize < head + size) {
@@ -105,8 +118,25 @@ namespace DD {
                         byteLength = size;
                     } while (false);
                 }
+            } else if (RadioButtonTrimTypeC.Checked) {
+                long head = ByteInputControl_C1.getByte();
+                long tail = ByteInputControl_C2.getByte();
+                sb.AppendLine("左から右の間を切り出します。1バイト目から100バイト目の間を切り出すとき");
+                if (BaseFileSize != -1) {
+                    do {
+                        if (tail <= head) {
+                            byteOffset = -1;
+                            break;
+                        }
+                        byteOffset = head;
+                        byteLength = tail - head;
+                    } while (false);
+                }
             }
-            TextBoxStatus.Text = sb.ToString();
+            setByteInformation(sb, BaseFileSize, "←読み込んだファイルサイズ\r\n");
+            setByteInformation(sb, byteOffset, "←切り出し開始オフセット\r\n");
+            setByteInformation(sb, byteLength, "←切り出すファイルサイズ");
+            TextBoxStatus.Text = (byteOffset == -1 ? "エラー:" : "") + sb.ToString();
         }
         private void ButtonOpenFileDialogFrom_Click(object sender, EventArgs e) {
             OpenFileDialog ofd = new OpenFileDialog();
@@ -147,7 +177,7 @@ namespace DD {
                 MessageBox.Show("書き出すファイルの指定がありません");
                 return;
             }
-            if ( ((Control.ModifierKeys & Keys.Shift) != Keys.Shift) && new FileInfo(savePath).Exists) {
+            if (((Control.ModifierKeys & Keys.Shift) != Keys.Shift) && new FileInfo(savePath).Exists) {
                 DialogResult dr = MessageBox.Show("書き出すファイルが存在します。上書きしてよろしいですか？\r\n[" + savePath + "]", "ファイル存在エラー", MessageBoxButtons.OKCancel, MessageBoxIcon.Error, MessageBoxDefaultButton.Button2);
                 if (dr == DialogResult.Cancel) {
                     return;
