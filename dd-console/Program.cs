@@ -11,6 +11,7 @@ namespace dd_console {
         int mode = 0;
         long arg1 = 0;
         long arg2 = 0;
+        bool finishOpen = false;
         static void Main(string[] args) {
             Program prg = new Program();
             for (int i = 0; i < args.Length; i++) {
@@ -33,6 +34,8 @@ namespace dd_console {
                     String[] arg2Byte = arg.Substring("m1:".Length).Split('/');
                     prg.arg1 = ByteFormatter.getByteFromGMKBString(arg2Byte[0]);
                     prg.arg2 = ByteFormatter.getByteFromGMKBString(arg2Byte[1]);
+                } else if (arg.StartsWith("open:")) {
+                    prg.finishOpen = true;
                 } else if (System.IO.File.Exists(arg)) {
                     prg.inputFile = arg;
                 }
@@ -65,10 +68,10 @@ m3
 <-1mb-><----2mb----->
 -------00000000000000-------
 
-ddw file.ts
+dd-console file.ts
 filesize 10GB 100MB  10kb  1b
 
-ddw file.ts ""m1: 100GB 100MB / 1GB""
+dd-console file.ts ""m1: 100GB 100MB / 1GB"" open:
  10.00 % [10GB 100MB  10kb  1b / 10GB 100MB  10kb  1b]";
             Console.WriteLine(message);
         }
@@ -160,6 +163,9 @@ ddw file.ts ""m1: 100GB 100MB / 1GB""
                 File.SetCreationTime(saveFilePath, File.GetCreationTime(this.inputFile));
                 File.SetLastWriteTime(saveFilePath, File.GetLastWriteTime(this.inputFile));
                 File.SetLastAccessTime(saveFilePath, File.GetLastAccessTime(this.inputFile));
+                if (this.finishOpen) {
+                    System.Diagnostics.Process p = System.Diagnostics.Process.Start(saveFilePath);
+                }
             }
         }
     }
