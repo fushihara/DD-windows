@@ -120,7 +120,6 @@ ddw file.ts ""m1: 100GB 100MB / 1GB""
                 Console.WriteLine($"copyLength:{ByteFormatter.getFormatGMKBString(copyLength)}");
                 Console.WriteLine($"outFile:{saveFilePath}");
             }
-            //return;
             // 開始
             int bufferLength = 1024 * 1024;
             long remainingCopyLength = copyLength;
